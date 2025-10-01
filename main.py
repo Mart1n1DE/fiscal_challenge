@@ -90,9 +90,8 @@ if __name__ == "__main__":
                 print(f"\n❌ Reached max retries for {ticker}. Please review failed files manually.")
                 print(f"💡 Tip: Check the files marked with .FAILED suffix in {statements_dir}")
                 schema_map_path = os.path.join(unified_dir, "schema_map.json")
-                if os.path.exists(schema_map_path):
-                    print(f"💡 Removing cached schema map at {schema_map_path} (might be corrupted)")
-                    os.remove(schema_map_path)
+                print(f"💡 Current schema preserved at {schema_map_path}")
+                print(f"💡 To regenerate schema on next run, delete this file manually")
                 break
             
             print("Triggering self-correction: Marking failed JSONs for re-extraction...")

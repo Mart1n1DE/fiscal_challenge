@@ -158,13 +158,24 @@ This avoids brittle regex patterns and adapts to different report structures.
 
 ### 4. Schema Normalization
 
-**Challenge**: Line items vary across years ("Revenues" vs "Net sales" vs "Turnover").
+**Challenge**: Line items vary across years ("Revenues" vs "Net sales" vs "Sales").
 
-**Solution**: AI-generated schema map:
-1. Collect all unique column names from extracted JSONs
-2. Send to GPT-4 with IFRS/GAAP terminology rules
-3. Generate mapping: `{"revenues": "Net Sales", "net sales": "Net Sales", ...}`
-4. Cache in `schema_map.json` for consistency
+**Solution**: Hybrid AI + manual schema mapping:
+1. Define critical mappings for validation (sales, net_income, total_assets, etc.) in snake_case
+2. Collect all unique column names from extracted JSONs
+3. Send remaining items to GPT-4 with simplified normalization rules
+4. Merge AI results with critical mappings
+5. Cache in `schema_map.json` for consistency
+
+**Critical mappings ensure validation always works:**
+- Revenue variations → `sales`
+- Profit variations → `net_income`
+- Balance sheet totals → `total_assets`, `total_liabilities`, `total_equity`
+- Cash variations → `cash_and_cash_equivalents_at_the_end_of_the_year`
+
+**AI handles everything else**: Creates snake_case canonical names for other items, grouping obvious variations while keeping distinct items separate (e.g., beginning vs ending cash).
+
+**Fallback safety**: If AI fails, critical mappings ensure validation still works.
 
 ### 5. Golden Record Selection
 
