@@ -31,7 +31,7 @@ This project extracts 10+ years of financial data (Income Statement, Balance She
 1. Clone the repository:
 ```bash
 git clone https://github.com/Mart1n1DE/fiscal_challenge.git
-cd financial-statement-extractor
+cd fiscal_challenge
 ```
 
 2. Install dependencies:
