@@ -1,7 +1,7 @@
-openai
-python-dotenv
-requests
-beautifulsoup4
-PyMuPDF
-pandas
-selenium
+openai==2.0.1
+python-dotenv==1.1.1
+requests==2.32.5
+beautifulsoup4==4.14.2
+PyMuPDF==1.26.4
+pandas==2.3.3
+selenium==4.35.0
