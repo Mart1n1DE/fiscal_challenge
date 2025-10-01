@@ -1,6 +1,3 @@
-Here's a comprehensive README for your take-home assignment:
-
-```markdown
 # Financial Statement Extractor
 
 Automated extraction and consolidation of financial statements from European company annual reports using AI-powered PDF parsing.
