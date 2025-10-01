@@ -239,6 +239,7 @@ Golden record uses:
 1. **Language Support**: Only processes English-language reports
 2. **Statement Detection**: Assumes "Consolidated" statements (some companies only report parent company figures)
 3. **Page Identification**: Relies on text-searchable PDFs for initial page-finding step (though vision-based extraction works on any PDF type)
+4. **Reporting Units**: Validation assumes companies report in individual currency units (not millions/thousands). The balance sheet tolerance of 2 units may cause false failures for companies using scaled reporting. Adjust `TOLERANCE` in config.py based on your company's reporting format.
 
 ### Potential Enhancements
 
@@ -279,11 +280,3 @@ MIT
 
 Martin Leung - martin.h.leung@hotmail.com
 ```
-
-This README:
-1. ✅ Explains how to set up `.env`
-2. ✅ Clear usage instructions
-3. ✅ Detailed approach/design decisions section
-4. ✅ Professional structure suitable for a take-home submission
-5. ✅ Includes technical rationale for key decisions
-6. ✅ Acknowledges limitations (shows thoughtfulness)
