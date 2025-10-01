@@ -1,0 +1,7 @@
+openai
+python-dotenv
+requests
+beautifulsoup4
+PyMuPDF
+pandas
+selenium
