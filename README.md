@@ -30,7 +30,7 @@ This project extracts 10+ years of financial data (Income Statement, Balance She
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Mart1n1DE/fiscal_challenge.git
 cd financial-statement-extractor
 ```
 
@@ -41,7 +41,7 @@ pip install -r requirements.txt
 
 3. Create `.env` file in project root:
 ```bash
-OPENAI_API_KEY=sk-proj-your-key-here
+OPENAI_API_KEY=sk-......
 ```
 
 ### Configuration
