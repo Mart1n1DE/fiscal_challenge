@@ -49,13 +49,15 @@ def validate_income_statement(df: pd.DataFrame, tolerance: int) -> set:
         year = row['year']
         print(f"\nChecking year: {year}")
         
-        sales = get_value(row, 'sales')
+        # Check multiple variations for sales
+        sales = get_value(row, 'sales', ['net_sales', 'revenue', 'revenues'])
         if pd.isna(sales) or sales <= 0:
             print(f"  ❌ FAIL: {year} - Missing or invalid sales")
             failed_files.add(row['file_source'])
             continue
         
-        net_income = get_value(row, 'net_income')
+        # Check multiple variations for net income
+        net_income = get_value(row, 'net_income', ['net_profit', 'net_profit_for_the_year'])
         if pd.isna(net_income):
             print(f"  ❌ FAIL: {year} - Missing net income")
             failed_files.add(row['file_source'])
@@ -86,7 +88,7 @@ def validate_balance_sheet(df: pd.DataFrame, tolerance: int) -> set:
         year = row['year']
         print(f"\nChecking year: {year}")
         
-        total_assets = get_value(row, 'total_assets')
+        total_assets = get_value(row, 'total_assets', ['total_asset'])
         if pd.isna(total_assets) or total_assets <= 0:
             print(f"  ❌ FAIL: {year} - Missing or invalid total assets")
             failed_files.add(row['file_source'])
@@ -128,12 +130,12 @@ def validate_cash_flow_statement(df: pd.DataFrame, tolerance: int) -> set:
         year = row['year']
         print(f"\nChecking year: {year}")
         
-        ending_cash_cols = [
+        # Try all reasonable variations for ending cash
+        ending_cash = get_value(row, 'cash_and_cash_equivalents_at_the_end_of_the_year', [
             'cash_and_cash_equivalents_at_december_31',
             'cash_and_cash_equivalents_as_at_december_31',
             'cash_and_cash_equivalents'
-        ]
-        ending_cash = get_value(row, ending_cash_cols[0], ending_cash_cols[1:])
+        ])
         
         if pd.isna(ending_cash) or ending_cash <= 0:
             print(f"  ❌ FAIL: {year} - Missing or invalid ending cash")

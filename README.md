@@ -225,18 +225,20 @@ Golden record uses:
 
 ### Current Limitations
 
-1. **Language**: Only works with English-language reports (could add multi-language support)
-2. **Statement Detection**: Assumes "Consolidated" statements (some companies only publish parent statements)
-3. **Validation**: Basic checks only (could add more sophisticated validation)
-4. **Rate Limits**: No rate limiting on OpenAI API calls
+1. **Language Support**: Only processes English-language reports
+2. **Statement Detection**: Assumes "Consolidated" statements (some companies only report parent company figures)
+3. **Page Identification**: Relies on text-searchable PDFs for initial page-finding step (though vision-based extraction works on any PDF type)
 
 ### Potential Enhancements
 
-1. **OCR Support**: Handle scanned PDFs (currently requires native text)
-2. **Segment Reporting**: Extract segment/geographic breakdowns
-3. **Notes Extraction**: Parse footnotes and accounting policies
-4. **Comparative Analysis**: Auto-generate year-over-year variance reports
-5. **Web Interface**: Build dashboard for browsing extracted data
+1. **Rate Limiting**: Add throttling for OpenAI API calls to avoid hitting usage limits
+2. **Enhanced Validation**: 
+   - Cash flow reconciliation (Operating + Investing + Financing = Net Change)
+   - Year-over-year continuity checks (prior year ending cash = current year beginning cash)
+   - Cross-statement validation (Balance Sheet cash = Cash Flow Statement ending cash)
+3. **Advanced Models**: Leverage GPT-5 or future models with native PDF reading capabilities for improved efficiency
+4. **Multi-Language Support**: Extend extraction to handle German, French, and other European languages
+5. **Notes & Footnotes**: Extract accounting policies and footnote disclosures
 
 ## Dependencies
 
